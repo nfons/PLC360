@@ -1,0 +1,1804 @@
+Created by PLY version 3.3 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> stmt_list
+Rule 2     stmt_list -> stmt SEMICOLON stmt_list
+Rule 3     stmt_list -> stmt
+Rule 4     stmt -> assign_stmt
+Rule 5     stmt -> while_stmt
+Rule 6     stmt -> if_stmt
+Rule 7     stmt -> define_stmt
+Rule 8     expr -> expr PLUS term
+Rule 9     expr -> expr MINUS term
+Rule 10    expr_list -> expr COMMA expr_list
+Rule 11    expr_list -> expr
+Rule 12    expr -> term
+Rule 13    term -> term TIMES fact
+Rule 14    term -> fact
+Rule 15    fact -> LPAREN expr RPAREN
+Rule 16    fact -> NUMBER
+Rule 17    fact -> IDENT
+Rule 18    fact -> func_call
+Rule 19    fact -> List
+Rule 20    List -> SQUAREBRAC1 ListItems SQUAREBRAC2
+Rule 21    List -> SQUAREBRAC1 SQUAREBRAC2
+Rule 22    ListItems -> Item COMMA ListItems
+Rule 23    ListItems -> Item
+Rule 24    Item -> NUMBER
+Rule 25    Item -> List
+Rule 26    fact -> CAR LPAREN Item RPAREN
+Rule 27    fact -> CAR LPAREN IDENT RPAREN
+Rule 28    fact -> CDR LPAREN IDENT RPAREN
+Rule 29    fact -> CDR LPAREN Item RPAREN
+Rule 30    fact -> NULL QUESTIONMARK LPAREN Item RPAREN
+Rule 31    fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN
+Rule 32    fact -> LIST QUESTIONMARK LPAREN Item RPAREN
+Rule 33    fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN
+Rule 34    fact -> INT QUESTIONMARK LPAREN IDENT RPAREN
+Rule 35    fact -> INT QUESTIONMARK LPAREN Item RPAREN
+Rule 36    fact -> CONS LPAREN IDENT COMMA IDENT RPAREN
+Rule 37    fact -> CONS LPAREN Item COMMA List RPAREN
+Rule 38    assign_stmt -> IDENT ASSIGNOP expr
+Rule 39    while_stmt -> WHILE expr DO stmt_list OD
+Rule 40    if_stmt -> IF expr THEN stmt_list ELSE stmt_list FI
+Rule 41    define_stmt -> DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END
+Rule 42    param_list -> IDENT COMMA param_list
+Rule 43    param_list -> IDENT
+Rule 44    func_call -> IDENT LPAREN expr_list RPAREN
+
+Terminals, with rules where they appear
+
+ASSIGNOP             : 38
+CAR                  : 26 27
+CDR                  : 28 29
+COMMA                : 10 22 36 37 42
+CONS                 : 36 37
+DEFINE               : 41
+DO                   : 39
+ELSE                 : 40
+END                  : 41
+FI                   : 40
+IDENT                : 17 27 28 31 33 34 36 36 38 41 42 43 44
+IF                   : 40
+INT                  : 34 35
+LIST                 : 32 33
+LPAREN               : 15 26 27 28 29 30 31 32 33 34 35 36 37 41 44
+MINUS                : 9
+NULL                 : 30 31
+NUMBER               : 16 24
+OD                   : 39
+PLUS                 : 8
+PROC                 : 41
+QUESTIONMARK         : 30 31 32 33 34 35
+RPAREN               : 15 26 27 28 29 30 31 32 33 34 35 36 37 41 44
+SEMICOLON            : 2
+SQUAREBRAC1          : 20 21
+SQUAREBRAC2          : 20 21
+THEN                 : 40
+TIMES                : 13
+WHILE                : 39
+error                : 
+
+Nonterminals, with rules where they appear
+
+Item                 : 22 23 26 29 30 32 35 37
+List                 : 19 25 37
+ListItems            : 20 22
+assign_stmt          : 4
+define_stmt          : 7
+expr                 : 8 9 10 11 15 38 39 40
+expr_list            : 10 44
+fact                 : 13 14
+func_call            : 18
+if_stmt              : 6
+param_list           : 41 42
+program              : 0
+stmt                 : 2 3
+stmt_list            : 1 2 39 40 40 41
+term                 : 8 9 12 13
+while_stmt           : 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . stmt_list
+    (2) stmt_list -> . stmt SEMICOLON stmt_list
+    (3) stmt_list -> . stmt
+    (4) stmt -> . assign_stmt
+    (5) stmt -> . while_stmt
+    (6) stmt -> . if_stmt
+    (7) stmt -> . define_stmt
+    (38) assign_stmt -> . IDENT ASSIGNOP expr
+    (39) while_stmt -> . WHILE expr DO stmt_list OD
+    (40) if_stmt -> . IF expr THEN stmt_list ELSE stmt_list FI
+    (41) define_stmt -> . DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END
+
+    IDENT           shift and go to state 6
+    WHILE           shift and go to state 1
+    IF              shift and go to state 8
+    DEFINE          shift and go to state 5
+
+    stmt_list                      shift and go to state 9
+    if_stmt                        shift and go to state 10
+    define_stmt                    shift and go to state 2
+    stmt                           shift and go to state 7
+    assign_stmt                    shift and go to state 3
+    while_stmt                     shift and go to state 11
+    program                        shift and go to state 4
+
+state 1
+
+    (39) while_stmt -> WHILE . expr DO stmt_list OD
+    (8) expr -> . expr PLUS term
+    (9) expr -> . expr MINUS term
+    (12) expr -> . term
+    (13) term -> . term TIMES fact
+    (14) term -> . fact
+    (15) fact -> . LPAREN expr RPAREN
+    (16) fact -> . NUMBER
+    (17) fact -> . IDENT
+    (18) fact -> . func_call
+    (19) fact -> . List
+    (26) fact -> . CAR LPAREN Item RPAREN
+    (27) fact -> . CAR LPAREN IDENT RPAREN
+    (28) fact -> . CDR LPAREN IDENT RPAREN
+    (29) fact -> . CDR LPAREN Item RPAREN
+    (30) fact -> . NULL QUESTIONMARK LPAREN Item RPAREN
+    (31) fact -> . NULL QUESTIONMARK LPAREN IDENT RPAREN
+    (32) fact -> . LIST QUESTIONMARK LPAREN Item RPAREN
+    (33) fact -> . LIST QUESTIONMARK LPAREN IDENT RPAREN
+    (34) fact -> . INT QUESTIONMARK LPAREN IDENT RPAREN
+    (35) fact -> . INT QUESTIONMARK LPAREN Item RPAREN
+    (36) fact -> . CONS LPAREN IDENT COMMA IDENT RPAREN
+    (37) fact -> . CONS LPAREN Item COMMA List RPAREN
+    (44) func_call -> . IDENT LPAREN expr_list RPAREN
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    LPAREN          shift and go to state 19
+    NUMBER          shift and go to state 14
+    IDENT           shift and go to state 17
+    CAR             shift and go to state 13
+    CDR             shift and go to state 25
+    NULL            shift and go to state 15
+    LIST            shift and go to state 23
+    INT             shift and go to state 21
+    CONS            shift and go to state 12
+    SQUAREBRAC1     shift and go to state 24
+
+    func_call                      shift and go to state 16
+    term                           shift and go to state 20
+    expr                           shift and go to state 22
+    List                           shift and go to state 18
+    fact                           shift and go to state 26
+
+state 2
+
+    (7) stmt -> define_stmt .
+
+    SEMICOLON       reduce using rule 7 (stmt -> define_stmt .)
+    ELSE            reduce using rule 7 (stmt -> define_stmt .)
+    OD              reduce using rule 7 (stmt -> define_stmt .)
+    END             reduce using rule 7 (stmt -> define_stmt .)
+    FI              reduce using rule 7 (stmt -> define_stmt .)
+    $end            reduce using rule 7 (stmt -> define_stmt .)
+
+
+state 3
+
+    (4) stmt -> assign_stmt .
+
+    SEMICOLON       reduce using rule 4 (stmt -> assign_stmt .)
+    ELSE            reduce using rule 4 (stmt -> assign_stmt .)
+    OD              reduce using rule 4 (stmt -> assign_stmt .)
+    END             reduce using rule 4 (stmt -> assign_stmt .)
+    FI              reduce using rule 4 (stmt -> assign_stmt .)
+    $end            reduce using rule 4 (stmt -> assign_stmt .)
+
+
+state 4
+
+    (0) S' -> program .
+
+
+
+state 5
+
+    (41) define_stmt -> DEFINE . IDENT PROC LPAREN param_list RPAREN stmt_list END
+
+    IDENT           shift and go to state 27
+
+
+state 6
+
+    (38) assign_stmt -> IDENT . ASSIGNOP expr
+
+    ASSIGNOP        shift and go to state 28
+
+
+state 7
+
+    (2) stmt_list -> stmt . SEMICOLON stmt_list
+    (3) stmt_list -> stmt .
+
+    SEMICOLON       shift and go to state 29
+    $end            reduce using rule 3 (stmt_list -> stmt .)
+    OD              reduce using rule 3 (stmt_list -> stmt .)
+    ELSE            reduce using rule 3 (stmt_list -> stmt .)
+    FI              reduce using rule 3 (stmt_list -> stmt .)
+    END             reduce using rule 3 (stmt_list -> stmt .)
+
+
+state 8
+
+    (40) if_stmt -> IF . expr THEN stmt_list ELSE stmt_list FI
+    (8) expr -> . expr PLUS term
+    (9) expr -> . expr MINUS term
+    (12) expr -> . term
+    (13) term -> . term TIMES fact
+    (14) term -> . fact
+    (15) fact -> . LPAREN expr RPAREN
+    (16) fact -> . NUMBER
+    (17) fact -> . IDENT
+    (18) fact -> . func_call
+    (19) fact -> . List
+    (26) fact -> . CAR LPAREN Item RPAREN
+    (27) fact -> . CAR LPAREN IDENT RPAREN
+    (28) fact -> . CDR LPAREN IDENT RPAREN
+    (29) fact -> . CDR LPAREN Item RPAREN
+    (30) fact -> . NULL QUESTIONMARK LPAREN Item RPAREN
+    (31) fact -> . NULL QUESTIONMARK LPAREN IDENT RPAREN
+    (32) fact -> . LIST QUESTIONMARK LPAREN Item RPAREN
+    (33) fact -> . LIST QUESTIONMARK LPAREN IDENT RPAREN
+    (34) fact -> . INT QUESTIONMARK LPAREN IDENT RPAREN
+    (35) fact -> . INT QUESTIONMARK LPAREN Item RPAREN
+    (36) fact -> . CONS LPAREN IDENT COMMA IDENT RPAREN
+    (37) fact -> . CONS LPAREN Item COMMA List RPAREN
+    (44) func_call -> . IDENT LPAREN expr_list RPAREN
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    LPAREN          shift and go to state 19
+    NUMBER          shift and go to state 14
+    IDENT           shift and go to state 17
+    CAR             shift and go to state 13
+    CDR             shift and go to state 25
+    NULL            shift and go to state 15
+    LIST            shift and go to state 23
+    INT             shift and go to state 21
+    CONS            shift and go to state 12
+    SQUAREBRAC1     shift and go to state 24
+
+    func_call                      shift and go to state 16
+    term                           shift and go to state 20
+    expr                           shift and go to state 30
+    List                           shift and go to state 18
+    fact                           shift and go to state 26
+
+state 9
+
+    (1) program -> stmt_list .
+
+    $end            reduce using rule 1 (program -> stmt_list .)
+
+
+state 10
+
+    (6) stmt -> if_stmt .
+
+    SEMICOLON       reduce using rule 6 (stmt -> if_stmt .)
+    ELSE            reduce using rule 6 (stmt -> if_stmt .)
+    OD              reduce using rule 6 (stmt -> if_stmt .)
+    END             reduce using rule 6 (stmt -> if_stmt .)
+    FI              reduce using rule 6 (stmt -> if_stmt .)
+    $end            reduce using rule 6 (stmt -> if_stmt .)
+
+
+state 11
+
+    (5) stmt -> while_stmt .
+
+    SEMICOLON       reduce using rule 5 (stmt -> while_stmt .)
+    ELSE            reduce using rule 5 (stmt -> while_stmt .)
+    OD              reduce using rule 5 (stmt -> while_stmt .)
+    END             reduce using rule 5 (stmt -> while_stmt .)
+    FI              reduce using rule 5 (stmt -> while_stmt .)
+    $end            reduce using rule 5 (stmt -> while_stmt .)
+
+
+state 12
+
+    (36) fact -> CONS . LPAREN IDENT COMMA IDENT RPAREN
+    (37) fact -> CONS . LPAREN Item COMMA List RPAREN
+
+    LPAREN          shift and go to state 31
+
+
+state 13
+
+    (26) fact -> CAR . LPAREN Item RPAREN
+    (27) fact -> CAR . LPAREN IDENT RPAREN
+
+    LPAREN          shift and go to state 32
+
+
+state 14
+
+    (16) fact -> NUMBER .
+
+    TIMES           reduce using rule 16 (fact -> NUMBER .)
+    RPAREN          reduce using rule 16 (fact -> NUMBER .)
+    PLUS            reduce using rule 16 (fact -> NUMBER .)
+    MINUS           reduce using rule 16 (fact -> NUMBER .)
+    DO              reduce using rule 16 (fact -> NUMBER .)
+    THEN            reduce using rule 16 (fact -> NUMBER .)
+    SEMICOLON       reduce using rule 16 (fact -> NUMBER .)
+    $end            reduce using rule 16 (fact -> NUMBER .)
+    OD              reduce using rule 16 (fact -> NUMBER .)
+    ELSE            reduce using rule 16 (fact -> NUMBER .)
+    FI              reduce using rule 16 (fact -> NUMBER .)
+    END             reduce using rule 16 (fact -> NUMBER .)
+    COMMA           reduce using rule 16 (fact -> NUMBER .)
+
+
+state 15
+
+    (30) fact -> NULL . QUESTIONMARK LPAREN Item RPAREN
+    (31) fact -> NULL . QUESTIONMARK LPAREN IDENT RPAREN
+
+    QUESTIONMARK    shift and go to state 33
+
+
+state 16
+
+    (18) fact -> func_call .
+
+    TIMES           reduce using rule 18 (fact -> func_call .)
+    RPAREN          reduce using rule 18 (fact -> func_call .)
+    PLUS            reduce using rule 18 (fact -> func_call .)
+    MINUS           reduce using rule 18 (fact -> func_call .)
+    DO              reduce using rule 18 (fact -> func_call .)
+    THEN            reduce using rule 18 (fact -> func_call .)
+    SEMICOLON       reduce using rule 18 (fact -> func_call .)
+    $end            reduce using rule 18 (fact -> func_call .)
+    OD              reduce using rule 18 (fact -> func_call .)
+    ELSE            reduce using rule 18 (fact -> func_call .)
+    FI              reduce using rule 18 (fact -> func_call .)
+    END             reduce using rule 18 (fact -> func_call .)
+    COMMA           reduce using rule 18 (fact -> func_call .)
+
+
+state 17
+
+    (17) fact -> IDENT .
+    (44) func_call -> IDENT . LPAREN expr_list RPAREN
+
+    TIMES           reduce using rule 17 (fact -> IDENT .)
+    RPAREN          reduce using rule 17 (fact -> IDENT .)
+    PLUS            reduce using rule 17 (fact -> IDENT .)
+    MINUS           reduce using rule 17 (fact -> IDENT .)
+    DO              reduce using rule 17 (fact -> IDENT .)
+    THEN            reduce using rule 17 (fact -> IDENT .)
+    SEMICOLON       reduce using rule 17 (fact -> IDENT .)
+    $end            reduce using rule 17 (fact -> IDENT .)
+    OD              reduce using rule 17 (fact -> IDENT .)
+    ELSE            reduce using rule 17 (fact -> IDENT .)
+    FI              reduce using rule 17 (fact -> IDENT .)
+    END             reduce using rule 17 (fact -> IDENT .)
+    COMMA           reduce using rule 17 (fact -> IDENT .)
+    LPAREN          shift and go to state 34
+
+
+state 18
+
+    (19) fact -> List .
+
+    TIMES           reduce using rule 19 (fact -> List .)
+    RPAREN          reduce using rule 19 (fact -> List .)
+    PLUS            reduce using rule 19 (fact -> List .)
+    MINUS           reduce using rule 19 (fact -> List .)
+    DO              reduce using rule 19 (fact -> List .)
+    THEN            reduce using rule 19 (fact -> List .)
+    SEMICOLON       reduce using rule 19 (fact -> List .)
+    $end            reduce using rule 19 (fact -> List .)
+    OD              reduce using rule 19 (fact -> List .)
+    ELSE            reduce using rule 19 (fact -> List .)
+    FI              reduce using rule 19 (fact -> List .)
+    END             reduce using rule 19 (fact -> List .)
+    COMMA           reduce using rule 19 (fact -> List .)
+
+
+state 19
+
+    (15) fact -> LPAREN . expr RPAREN
+    (8) expr -> . expr PLUS term
+    (9) expr -> . expr MINUS term
+    (12) expr -> . term
+    (13) term -> . term TIMES fact
+    (14) term -> . fact
+    (15) fact -> . LPAREN expr RPAREN
+    (16) fact -> . NUMBER
+    (17) fact -> . IDENT
+    (18) fact -> . func_call
+    (19) fact -> . List
+    (26) fact -> . CAR LPAREN Item RPAREN
+    (27) fact -> . CAR LPAREN IDENT RPAREN
+    (28) fact -> . CDR LPAREN IDENT RPAREN
+    (29) fact -> . CDR LPAREN Item RPAREN
+    (30) fact -> . NULL QUESTIONMARK LPAREN Item RPAREN
+    (31) fact -> . NULL QUESTIONMARK LPAREN IDENT RPAREN
+    (32) fact -> . LIST QUESTIONMARK LPAREN Item RPAREN
+    (33) fact -> . LIST QUESTIONMARK LPAREN IDENT RPAREN
+    (34) fact -> . INT QUESTIONMARK LPAREN IDENT RPAREN
+    (35) fact -> . INT QUESTIONMARK LPAREN Item RPAREN
+    (36) fact -> . CONS LPAREN IDENT COMMA IDENT RPAREN
+    (37) fact -> . CONS LPAREN Item COMMA List RPAREN
+    (44) func_call -> . IDENT LPAREN expr_list RPAREN
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    LPAREN          shift and go to state 19
+    NUMBER          shift and go to state 14
+    IDENT           shift and go to state 17
+    CAR             shift and go to state 13
+    CDR             shift and go to state 25
+    NULL            shift and go to state 15
+    LIST            shift and go to state 23
+    INT             shift and go to state 21
+    CONS            shift and go to state 12
+    SQUAREBRAC1     shift and go to state 24
+
+    func_call                      shift and go to state 16
+    term                           shift and go to state 20
+    expr                           shift and go to state 35
+    List                           shift and go to state 18
+    fact                           shift and go to state 26
+
+state 20
+
+    (12) expr -> term .
+    (13) term -> term . TIMES fact
+
+    COMMA           reduce using rule 12 (expr -> term .)
+    PLUS            reduce using rule 12 (expr -> term .)
+    MINUS           reduce using rule 12 (expr -> term .)
+    RPAREN          reduce using rule 12 (expr -> term .)
+    SEMICOLON       reduce using rule 12 (expr -> term .)
+    $end            reduce using rule 12 (expr -> term .)
+    OD              reduce using rule 12 (expr -> term .)
+    ELSE            reduce using rule 12 (expr -> term .)
+    FI              reduce using rule 12 (expr -> term .)
+    END             reduce using rule 12 (expr -> term .)
+    THEN            reduce using rule 12 (expr -> term .)
+    DO              reduce using rule 12 (expr -> term .)
+    TIMES           shift and go to state 36
+
+
+state 21
+
+    (34) fact -> INT . QUESTIONMARK LPAREN IDENT RPAREN
+    (35) fact -> INT . QUESTIONMARK LPAREN Item RPAREN
+
+    QUESTIONMARK    shift and go to state 37
+
+
+state 22
+
+    (39) while_stmt -> WHILE expr . DO stmt_list OD
+    (8) expr -> expr . PLUS term
+    (9) expr -> expr . MINUS term
+
+    DO              shift and go to state 38
+    PLUS            shift and go to state 39
+    MINUS           shift and go to state 40
+
+
+state 23
+
+    (32) fact -> LIST . QUESTIONMARK LPAREN Item RPAREN
+    (33) fact -> LIST . QUESTIONMARK LPAREN IDENT RPAREN
+
+    QUESTIONMARK    shift and go to state 41
+
+
+state 24
+
+    (20) List -> SQUAREBRAC1 . ListItems SQUAREBRAC2
+    (21) List -> SQUAREBRAC1 . SQUAREBRAC2
+    (22) ListItems -> . Item COMMA ListItems
+    (23) ListItems -> . Item
+    (24) Item -> . NUMBER
+    (25) Item -> . List
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    SQUAREBRAC2     shift and go to state 46
+    NUMBER          shift and go to state 44
+    SQUAREBRAC1     shift and go to state 24
+
+    Item                           shift and go to state 42
+    List                           shift and go to state 43
+    ListItems                      shift and go to state 45
+
+state 25
+
+    (28) fact -> CDR . LPAREN IDENT RPAREN
+    (29) fact -> CDR . LPAREN Item RPAREN
+
+    LPAREN          shift and go to state 47
+
+
+state 26
+
+    (14) term -> fact .
+
+    TIMES           reduce using rule 14 (term -> fact .)
+    DO              reduce using rule 14 (term -> fact .)
+    PLUS            reduce using rule 14 (term -> fact .)
+    MINUS           reduce using rule 14 (term -> fact .)
+    THEN            reduce using rule 14 (term -> fact .)
+    RPAREN          reduce using rule 14 (term -> fact .)
+    SEMICOLON       reduce using rule 14 (term -> fact .)
+    $end            reduce using rule 14 (term -> fact .)
+    OD              reduce using rule 14 (term -> fact .)
+    ELSE            reduce using rule 14 (term -> fact .)
+    FI              reduce using rule 14 (term -> fact .)
+    END             reduce using rule 14 (term -> fact .)
+    COMMA           reduce using rule 14 (term -> fact .)
+
+
+state 27
+
+    (41) define_stmt -> DEFINE IDENT . PROC LPAREN param_list RPAREN stmt_list END
+
+    PROC            shift and go to state 48
+
+
+state 28
+
+    (38) assign_stmt -> IDENT ASSIGNOP . expr
+    (8) expr -> . expr PLUS term
+    (9) expr -> . expr MINUS term
+    (12) expr -> . term
+    (13) term -> . term TIMES fact
+    (14) term -> . fact
+    (15) fact -> . LPAREN expr RPAREN
+    (16) fact -> . NUMBER
+    (17) fact -> . IDENT
+    (18) fact -> . func_call
+    (19) fact -> . List
+    (26) fact -> . CAR LPAREN Item RPAREN
+    (27) fact -> . CAR LPAREN IDENT RPAREN
+    (28) fact -> . CDR LPAREN IDENT RPAREN
+    (29) fact -> . CDR LPAREN Item RPAREN
+    (30) fact -> . NULL QUESTIONMARK LPAREN Item RPAREN
+    (31) fact -> . NULL QUESTIONMARK LPAREN IDENT RPAREN
+    (32) fact -> . LIST QUESTIONMARK LPAREN Item RPAREN
+    (33) fact -> . LIST QUESTIONMARK LPAREN IDENT RPAREN
+    (34) fact -> . INT QUESTIONMARK LPAREN IDENT RPAREN
+    (35) fact -> . INT QUESTIONMARK LPAREN Item RPAREN
+    (36) fact -> . CONS LPAREN IDENT COMMA IDENT RPAREN
+    (37) fact -> . CONS LPAREN Item COMMA List RPAREN
+    (44) func_call -> . IDENT LPAREN expr_list RPAREN
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    LPAREN          shift and go to state 19
+    NUMBER          shift and go to state 14
+    IDENT           shift and go to state 17
+    CAR             shift and go to state 13
+    CDR             shift and go to state 25
+    NULL            shift and go to state 15
+    LIST            shift and go to state 23
+    INT             shift and go to state 21
+    CONS            shift and go to state 12
+    SQUAREBRAC1     shift and go to state 24
+
+    func_call                      shift and go to state 16
+    term                           shift and go to state 20
+    expr                           shift and go to state 49
+    List                           shift and go to state 18
+    fact                           shift and go to state 26
+
+state 29
+
+    (2) stmt_list -> stmt SEMICOLON . stmt_list
+    (2) stmt_list -> . stmt SEMICOLON stmt_list
+    (3) stmt_list -> . stmt
+    (4) stmt -> . assign_stmt
+    (5) stmt -> . while_stmt
+    (6) stmt -> . if_stmt
+    (7) stmt -> . define_stmt
+    (38) assign_stmt -> . IDENT ASSIGNOP expr
+    (39) while_stmt -> . WHILE expr DO stmt_list OD
+    (40) if_stmt -> . IF expr THEN stmt_list ELSE stmt_list FI
+    (41) define_stmt -> . DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END
+
+    IDENT           shift and go to state 6
+    WHILE           shift and go to state 1
+    IF              shift and go to state 8
+    DEFINE          shift and go to state 5
+
+    stmt_list                      shift and go to state 50
+    if_stmt                        shift and go to state 10
+    define_stmt                    shift and go to state 2
+    stmt                           shift and go to state 7
+    assign_stmt                    shift and go to state 3
+    while_stmt                     shift and go to state 11
+
+state 30
+
+    (40) if_stmt -> IF expr . THEN stmt_list ELSE stmt_list FI
+    (8) expr -> expr . PLUS term
+    (9) expr -> expr . MINUS term
+
+    THEN            shift and go to state 51
+    PLUS            shift and go to state 39
+    MINUS           shift and go to state 40
+
+
+state 31
+
+    (36) fact -> CONS LPAREN . IDENT COMMA IDENT RPAREN
+    (37) fact -> CONS LPAREN . Item COMMA List RPAREN
+    (24) Item -> . NUMBER
+    (25) Item -> . List
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    IDENT           shift and go to state 52
+    NUMBER          shift and go to state 44
+    SQUAREBRAC1     shift and go to state 24
+
+    Item                           shift and go to state 53
+    List                           shift and go to state 43
+
+state 32
+
+    (26) fact -> CAR LPAREN . Item RPAREN
+    (27) fact -> CAR LPAREN . IDENT RPAREN
+    (24) Item -> . NUMBER
+    (25) Item -> . List
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    IDENT           shift and go to state 54
+    NUMBER          shift and go to state 44
+    SQUAREBRAC1     shift and go to state 24
+
+    Item                           shift and go to state 55
+    List                           shift and go to state 43
+
+state 33
+
+    (30) fact -> NULL QUESTIONMARK . LPAREN Item RPAREN
+    (31) fact -> NULL QUESTIONMARK . LPAREN IDENT RPAREN
+
+    LPAREN          shift and go to state 56
+
+
+state 34
+
+    (44) func_call -> IDENT LPAREN . expr_list RPAREN
+    (10) expr_list -> . expr COMMA expr_list
+    (11) expr_list -> . expr
+    (8) expr -> . expr PLUS term
+    (9) expr -> . expr MINUS term
+    (12) expr -> . term
+    (13) term -> . term TIMES fact
+    (14) term -> . fact
+    (15) fact -> . LPAREN expr RPAREN
+    (16) fact -> . NUMBER
+    (17) fact -> . IDENT
+    (18) fact -> . func_call
+    (19) fact -> . List
+    (26) fact -> . CAR LPAREN Item RPAREN
+    (27) fact -> . CAR LPAREN IDENT RPAREN
+    (28) fact -> . CDR LPAREN IDENT RPAREN
+    (29) fact -> . CDR LPAREN Item RPAREN
+    (30) fact -> . NULL QUESTIONMARK LPAREN Item RPAREN
+    (31) fact -> . NULL QUESTIONMARK LPAREN IDENT RPAREN
+    (32) fact -> . LIST QUESTIONMARK LPAREN Item RPAREN
+    (33) fact -> . LIST QUESTIONMARK LPAREN IDENT RPAREN
+    (34) fact -> . INT QUESTIONMARK LPAREN IDENT RPAREN
+    (35) fact -> . INT QUESTIONMARK LPAREN Item RPAREN
+    (36) fact -> . CONS LPAREN IDENT COMMA IDENT RPAREN
+    (37) fact -> . CONS LPAREN Item COMMA List RPAREN
+    (44) func_call -> . IDENT LPAREN expr_list RPAREN
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    LPAREN          shift and go to state 19
+    NUMBER          shift and go to state 14
+    IDENT           shift and go to state 17
+    CAR             shift and go to state 13
+    CDR             shift and go to state 25
+    NULL            shift and go to state 15
+    LIST            shift and go to state 23
+    INT             shift and go to state 21
+    CONS            shift and go to state 12
+    SQUAREBRAC1     shift and go to state 24
+
+    func_call                      shift and go to state 16
+    term                           shift and go to state 20
+    expr_list                      shift and go to state 57
+    List                           shift and go to state 18
+    expr                           shift and go to state 58
+    fact                           shift and go to state 26
+
+state 35
+
+    (15) fact -> LPAREN expr . RPAREN
+    (8) expr -> expr . PLUS term
+    (9) expr -> expr . MINUS term
+
+    RPAREN          shift and go to state 59
+    PLUS            shift and go to state 39
+    MINUS           shift and go to state 40
+
+
+state 36
+
+    (13) term -> term TIMES . fact
+    (15) fact -> . LPAREN expr RPAREN
+    (16) fact -> . NUMBER
+    (17) fact -> . IDENT
+    (18) fact -> . func_call
+    (19) fact -> . List
+    (26) fact -> . CAR LPAREN Item RPAREN
+    (27) fact -> . CAR LPAREN IDENT RPAREN
+    (28) fact -> . CDR LPAREN IDENT RPAREN
+    (29) fact -> . CDR LPAREN Item RPAREN
+    (30) fact -> . NULL QUESTIONMARK LPAREN Item RPAREN
+    (31) fact -> . NULL QUESTIONMARK LPAREN IDENT RPAREN
+    (32) fact -> . LIST QUESTIONMARK LPAREN Item RPAREN
+    (33) fact -> . LIST QUESTIONMARK LPAREN IDENT RPAREN
+    (34) fact -> . INT QUESTIONMARK LPAREN IDENT RPAREN
+    (35) fact -> . INT QUESTIONMARK LPAREN Item RPAREN
+    (36) fact -> . CONS LPAREN IDENT COMMA IDENT RPAREN
+    (37) fact -> . CONS LPAREN Item COMMA List RPAREN
+    (44) func_call -> . IDENT LPAREN expr_list RPAREN
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    LPAREN          shift and go to state 19
+    NUMBER          shift and go to state 14
+    IDENT           shift and go to state 17
+    CAR             shift and go to state 13
+    CDR             shift and go to state 25
+    NULL            shift and go to state 15
+    LIST            shift and go to state 23
+    INT             shift and go to state 21
+    CONS            shift and go to state 12
+    SQUAREBRAC1     shift and go to state 24
+
+    func_call                      shift and go to state 16
+    List                           shift and go to state 18
+    fact                           shift and go to state 60
+
+state 37
+
+    (34) fact -> INT QUESTIONMARK . LPAREN IDENT RPAREN
+    (35) fact -> INT QUESTIONMARK . LPAREN Item RPAREN
+
+    LPAREN          shift and go to state 61
+
+
+state 38
+
+    (39) while_stmt -> WHILE expr DO . stmt_list OD
+    (2) stmt_list -> . stmt SEMICOLON stmt_list
+    (3) stmt_list -> . stmt
+    (4) stmt -> . assign_stmt
+    (5) stmt -> . while_stmt
+    (6) stmt -> . if_stmt
+    (7) stmt -> . define_stmt
+    (38) assign_stmt -> . IDENT ASSIGNOP expr
+    (39) while_stmt -> . WHILE expr DO stmt_list OD
+    (40) if_stmt -> . IF expr THEN stmt_list ELSE stmt_list FI
+    (41) define_stmt -> . DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END
+
+    IDENT           shift and go to state 6
+    WHILE           shift and go to state 1
+    IF              shift and go to state 8
+    DEFINE          shift and go to state 5
+
+    stmt_list                      shift and go to state 62
+    if_stmt                        shift and go to state 10
+    define_stmt                    shift and go to state 2
+    stmt                           shift and go to state 7
+    assign_stmt                    shift and go to state 3
+    while_stmt                     shift and go to state 11
+
+state 39
+
+    (8) expr -> expr PLUS . term
+    (13) term -> . term TIMES fact
+    (14) term -> . fact
+    (15) fact -> . LPAREN expr RPAREN
+    (16) fact -> . NUMBER
+    (17) fact -> . IDENT
+    (18) fact -> . func_call
+    (19) fact -> . List
+    (26) fact -> . CAR LPAREN Item RPAREN
+    (27) fact -> . CAR LPAREN IDENT RPAREN
+    (28) fact -> . CDR LPAREN IDENT RPAREN
+    (29) fact -> . CDR LPAREN Item RPAREN
+    (30) fact -> . NULL QUESTIONMARK LPAREN Item RPAREN
+    (31) fact -> . NULL QUESTIONMARK LPAREN IDENT RPAREN
+    (32) fact -> . LIST QUESTIONMARK LPAREN Item RPAREN
+    (33) fact -> . LIST QUESTIONMARK LPAREN IDENT RPAREN
+    (34) fact -> . INT QUESTIONMARK LPAREN IDENT RPAREN
+    (35) fact -> . INT QUESTIONMARK LPAREN Item RPAREN
+    (36) fact -> . CONS LPAREN IDENT COMMA IDENT RPAREN
+    (37) fact -> . CONS LPAREN Item COMMA List RPAREN
+    (44) func_call -> . IDENT LPAREN expr_list RPAREN
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    LPAREN          shift and go to state 19
+    NUMBER          shift and go to state 14
+    IDENT           shift and go to state 17
+    CAR             shift and go to state 13
+    CDR             shift and go to state 25
+    NULL            shift and go to state 15
+    LIST            shift and go to state 23
+    INT             shift and go to state 21
+    CONS            shift and go to state 12
+    SQUAREBRAC1     shift and go to state 24
+
+    func_call                      shift and go to state 16
+    term                           shift and go to state 63
+    List                           shift and go to state 18
+    fact                           shift and go to state 26
+
+state 40
+
+    (9) expr -> expr MINUS . term
+    (13) term -> . term TIMES fact
+    (14) term -> . fact
+    (15) fact -> . LPAREN expr RPAREN
+    (16) fact -> . NUMBER
+    (17) fact -> . IDENT
+    (18) fact -> . func_call
+    (19) fact -> . List
+    (26) fact -> . CAR LPAREN Item RPAREN
+    (27) fact -> . CAR LPAREN IDENT RPAREN
+    (28) fact -> . CDR LPAREN IDENT RPAREN
+    (29) fact -> . CDR LPAREN Item RPAREN
+    (30) fact -> . NULL QUESTIONMARK LPAREN Item RPAREN
+    (31) fact -> . NULL QUESTIONMARK LPAREN IDENT RPAREN
+    (32) fact -> . LIST QUESTIONMARK LPAREN Item RPAREN
+    (33) fact -> . LIST QUESTIONMARK LPAREN IDENT RPAREN
+    (34) fact -> . INT QUESTIONMARK LPAREN IDENT RPAREN
+    (35) fact -> . INT QUESTIONMARK LPAREN Item RPAREN
+    (36) fact -> . CONS LPAREN IDENT COMMA IDENT RPAREN
+    (37) fact -> . CONS LPAREN Item COMMA List RPAREN
+    (44) func_call -> . IDENT LPAREN expr_list RPAREN
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    LPAREN          shift and go to state 19
+    NUMBER          shift and go to state 14
+    IDENT           shift and go to state 17
+    CAR             shift and go to state 13
+    CDR             shift and go to state 25
+    NULL            shift and go to state 15
+    LIST            shift and go to state 23
+    INT             shift and go to state 21
+    CONS            shift and go to state 12
+    SQUAREBRAC1     shift and go to state 24
+
+    func_call                      shift and go to state 16
+    term                           shift and go to state 64
+    List                           shift and go to state 18
+    fact                           shift and go to state 26
+
+state 41
+
+    (32) fact -> LIST QUESTIONMARK . LPAREN Item RPAREN
+    (33) fact -> LIST QUESTIONMARK . LPAREN IDENT RPAREN
+
+    LPAREN          shift and go to state 65
+
+
+state 42
+
+    (22) ListItems -> Item . COMMA ListItems
+    (23) ListItems -> Item .
+
+    COMMA           shift and go to state 66
+    SQUAREBRAC2     reduce using rule 23 (ListItems -> Item .)
+
+
+state 43
+
+    (25) Item -> List .
+
+    COMMA           reduce using rule 25 (Item -> List .)
+    RPAREN          reduce using rule 25 (Item -> List .)
+    SQUAREBRAC2     reduce using rule 25 (Item -> List .)
+
+
+state 44
+
+    (24) Item -> NUMBER .
+
+    COMMA           reduce using rule 24 (Item -> NUMBER .)
+    RPAREN          reduce using rule 24 (Item -> NUMBER .)
+    SQUAREBRAC2     reduce using rule 24 (Item -> NUMBER .)
+
+
+state 45
+
+    (20) List -> SQUAREBRAC1 ListItems . SQUAREBRAC2
+
+    SQUAREBRAC2     shift and go to state 67
+
+
+state 46
+
+    (21) List -> SQUAREBRAC1 SQUAREBRAC2 .
+
+    TIMES           reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    DO              reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    PLUS            reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    MINUS           reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    COMMA           reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    SQUAREBRAC2     reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    THEN            reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    RPAREN          reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    SEMICOLON       reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    $end            reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    OD              reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    ELSE            reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    FI              reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+    END             reduce using rule 21 (List -> SQUAREBRAC1 SQUAREBRAC2 .)
+
+
+state 47
+
+    (28) fact -> CDR LPAREN . IDENT RPAREN
+    (29) fact -> CDR LPAREN . Item RPAREN
+    (24) Item -> . NUMBER
+    (25) Item -> . List
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    IDENT           shift and go to state 68
+    NUMBER          shift and go to state 44
+    SQUAREBRAC1     shift and go to state 24
+
+    Item                           shift and go to state 69
+    List                           shift and go to state 43
+
+state 48
+
+    (41) define_stmt -> DEFINE IDENT PROC . LPAREN param_list RPAREN stmt_list END
+
+    LPAREN          shift and go to state 70
+
+
+state 49
+
+    (38) assign_stmt -> IDENT ASSIGNOP expr .
+    (8) expr -> expr . PLUS term
+    (9) expr -> expr . MINUS term
+
+    SEMICOLON       reduce using rule 38 (assign_stmt -> IDENT ASSIGNOP expr .)
+    $end            reduce using rule 38 (assign_stmt -> IDENT ASSIGNOP expr .)
+    END             reduce using rule 38 (assign_stmt -> IDENT ASSIGNOP expr .)
+    OD              reduce using rule 38 (assign_stmt -> IDENT ASSIGNOP expr .)
+    ELSE            reduce using rule 38 (assign_stmt -> IDENT ASSIGNOP expr .)
+    FI              reduce using rule 38 (assign_stmt -> IDENT ASSIGNOP expr .)
+    PLUS            shift and go to state 39
+    MINUS           shift and go to state 40
+
+
+state 50
+
+    (2) stmt_list -> stmt SEMICOLON stmt_list .
+
+    $end            reduce using rule 2 (stmt_list -> stmt SEMICOLON stmt_list .)
+    OD              reduce using rule 2 (stmt_list -> stmt SEMICOLON stmt_list .)
+    ELSE            reduce using rule 2 (stmt_list -> stmt SEMICOLON stmt_list .)
+    FI              reduce using rule 2 (stmt_list -> stmt SEMICOLON stmt_list .)
+    END             reduce using rule 2 (stmt_list -> stmt SEMICOLON stmt_list .)
+
+
+state 51
+
+    (40) if_stmt -> IF expr THEN . stmt_list ELSE stmt_list FI
+    (2) stmt_list -> . stmt SEMICOLON stmt_list
+    (3) stmt_list -> . stmt
+    (4) stmt -> . assign_stmt
+    (5) stmt -> . while_stmt
+    (6) stmt -> . if_stmt
+    (7) stmt -> . define_stmt
+    (38) assign_stmt -> . IDENT ASSIGNOP expr
+    (39) while_stmt -> . WHILE expr DO stmt_list OD
+    (40) if_stmt -> . IF expr THEN stmt_list ELSE stmt_list FI
+    (41) define_stmt -> . DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END
+
+    IDENT           shift and go to state 6
+    WHILE           shift and go to state 1
+    IF              shift and go to state 8
+    DEFINE          shift and go to state 5
+
+    stmt_list                      shift and go to state 71
+    if_stmt                        shift and go to state 10
+    define_stmt                    shift and go to state 2
+    stmt                           shift and go to state 7
+    assign_stmt                    shift and go to state 3
+    while_stmt                     shift and go to state 11
+
+state 52
+
+    (36) fact -> CONS LPAREN IDENT . COMMA IDENT RPAREN
+
+    COMMA           shift and go to state 72
+
+
+state 53
+
+    (37) fact -> CONS LPAREN Item . COMMA List RPAREN
+
+    COMMA           shift and go to state 73
+
+
+state 54
+
+    (27) fact -> CAR LPAREN IDENT . RPAREN
+
+    RPAREN          shift and go to state 74
+
+
+state 55
+
+    (26) fact -> CAR LPAREN Item . RPAREN
+
+    RPAREN          shift and go to state 75
+
+
+state 56
+
+    (30) fact -> NULL QUESTIONMARK LPAREN . Item RPAREN
+    (31) fact -> NULL QUESTIONMARK LPAREN . IDENT RPAREN
+    (24) Item -> . NUMBER
+    (25) Item -> . List
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    IDENT           shift and go to state 76
+    NUMBER          shift and go to state 44
+    SQUAREBRAC1     shift and go to state 24
+
+    Item                           shift and go to state 77
+    List                           shift and go to state 43
+
+state 57
+
+    (44) func_call -> IDENT LPAREN expr_list . RPAREN
+
+    RPAREN          shift and go to state 78
+
+
+state 58
+
+    (10) expr_list -> expr . COMMA expr_list
+    (11) expr_list -> expr .
+    (8) expr -> expr . PLUS term
+    (9) expr -> expr . MINUS term
+
+    COMMA           shift and go to state 79
+    RPAREN          reduce using rule 11 (expr_list -> expr .)
+    PLUS            shift and go to state 39
+    MINUS           shift and go to state 40
+
+
+state 59
+
+    (15) fact -> LPAREN expr RPAREN .
+
+    TIMES           reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    PLUS            reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    MINUS           reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    DO              reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    THEN            reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    SEMICOLON       reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    $end            reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    OD              reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    ELSE            reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    FI              reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    END             reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+    COMMA           reduce using rule 15 (fact -> LPAREN expr RPAREN .)
+
+
+state 60
+
+    (13) term -> term TIMES fact .
+
+    TIMES           reduce using rule 13 (term -> term TIMES fact .)
+    DO              reduce using rule 13 (term -> term TIMES fact .)
+    PLUS            reduce using rule 13 (term -> term TIMES fact .)
+    MINUS           reduce using rule 13 (term -> term TIMES fact .)
+    THEN            reduce using rule 13 (term -> term TIMES fact .)
+    RPAREN          reduce using rule 13 (term -> term TIMES fact .)
+    SEMICOLON       reduce using rule 13 (term -> term TIMES fact .)
+    $end            reduce using rule 13 (term -> term TIMES fact .)
+    OD              reduce using rule 13 (term -> term TIMES fact .)
+    ELSE            reduce using rule 13 (term -> term TIMES fact .)
+    FI              reduce using rule 13 (term -> term TIMES fact .)
+    END             reduce using rule 13 (term -> term TIMES fact .)
+    COMMA           reduce using rule 13 (term -> term TIMES fact .)
+
+
+state 61
+
+    (34) fact -> INT QUESTIONMARK LPAREN . IDENT RPAREN
+    (35) fact -> INT QUESTIONMARK LPAREN . Item RPAREN
+    (24) Item -> . NUMBER
+    (25) Item -> . List
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    IDENT           shift and go to state 80
+    NUMBER          shift and go to state 44
+    SQUAREBRAC1     shift and go to state 24
+
+    Item                           shift and go to state 81
+    List                           shift and go to state 43
+
+state 62
+
+    (39) while_stmt -> WHILE expr DO stmt_list . OD
+
+    OD              shift and go to state 82
+
+
+state 63
+
+    (8) expr -> expr PLUS term .
+    (13) term -> term . TIMES fact
+
+    COMMA           reduce using rule 8 (expr -> expr PLUS term .)
+    PLUS            reduce using rule 8 (expr -> expr PLUS term .)
+    MINUS           reduce using rule 8 (expr -> expr PLUS term .)
+    RPAREN          reduce using rule 8 (expr -> expr PLUS term .)
+    SEMICOLON       reduce using rule 8 (expr -> expr PLUS term .)
+    $end            reduce using rule 8 (expr -> expr PLUS term .)
+    OD              reduce using rule 8 (expr -> expr PLUS term .)
+    ELSE            reduce using rule 8 (expr -> expr PLUS term .)
+    FI              reduce using rule 8 (expr -> expr PLUS term .)
+    END             reduce using rule 8 (expr -> expr PLUS term .)
+    THEN            reduce using rule 8 (expr -> expr PLUS term .)
+    DO              reduce using rule 8 (expr -> expr PLUS term .)
+    TIMES           shift and go to state 36
+
+
+state 64
+
+    (9) expr -> expr MINUS term .
+    (13) term -> term . TIMES fact
+
+    COMMA           reduce using rule 9 (expr -> expr MINUS term .)
+    PLUS            reduce using rule 9 (expr -> expr MINUS term .)
+    MINUS           reduce using rule 9 (expr -> expr MINUS term .)
+    RPAREN          reduce using rule 9 (expr -> expr MINUS term .)
+    SEMICOLON       reduce using rule 9 (expr -> expr MINUS term .)
+    $end            reduce using rule 9 (expr -> expr MINUS term .)
+    OD              reduce using rule 9 (expr -> expr MINUS term .)
+    ELSE            reduce using rule 9 (expr -> expr MINUS term .)
+    FI              reduce using rule 9 (expr -> expr MINUS term .)
+    END             reduce using rule 9 (expr -> expr MINUS term .)
+    THEN            reduce using rule 9 (expr -> expr MINUS term .)
+    DO              reduce using rule 9 (expr -> expr MINUS term .)
+    TIMES           shift and go to state 36
+
+
+state 65
+
+    (32) fact -> LIST QUESTIONMARK LPAREN . Item RPAREN
+    (33) fact -> LIST QUESTIONMARK LPAREN . IDENT RPAREN
+    (24) Item -> . NUMBER
+    (25) Item -> . List
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    IDENT           shift and go to state 83
+    NUMBER          shift and go to state 44
+    SQUAREBRAC1     shift and go to state 24
+
+    Item                           shift and go to state 84
+    List                           shift and go to state 43
+
+state 66
+
+    (22) ListItems -> Item COMMA . ListItems
+    (22) ListItems -> . Item COMMA ListItems
+    (23) ListItems -> . Item
+    (24) Item -> . NUMBER
+    (25) Item -> . List
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    NUMBER          shift and go to state 44
+    SQUAREBRAC1     shift and go to state 24
+
+    Item                           shift and go to state 42
+    List                           shift and go to state 43
+    ListItems                      shift and go to state 85
+
+state 67
+
+    (20) List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .
+
+    TIMES           reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    DO              reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    PLUS            reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    MINUS           reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    COMMA           reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    SQUAREBRAC2     reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    THEN            reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    RPAREN          reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    SEMICOLON       reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    $end            reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    OD              reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    ELSE            reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    FI              reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+    END             reduce using rule 20 (List -> SQUAREBRAC1 ListItems SQUAREBRAC2 .)
+
+
+state 68
+
+    (28) fact -> CDR LPAREN IDENT . RPAREN
+
+    RPAREN          shift and go to state 86
+
+
+state 69
+
+    (29) fact -> CDR LPAREN Item . RPAREN
+
+    RPAREN          shift and go to state 87
+
+
+state 70
+
+    (41) define_stmt -> DEFINE IDENT PROC LPAREN . param_list RPAREN stmt_list END
+    (42) param_list -> . IDENT COMMA param_list
+    (43) param_list -> . IDENT
+
+    IDENT           shift and go to state 88
+
+    param_list                     shift and go to state 89
+
+state 71
+
+    (40) if_stmt -> IF expr THEN stmt_list . ELSE stmt_list FI
+
+    ELSE            shift and go to state 90
+
+
+state 72
+
+    (36) fact -> CONS LPAREN IDENT COMMA . IDENT RPAREN
+
+    IDENT           shift and go to state 91
+
+
+state 73
+
+    (37) fact -> CONS LPAREN Item COMMA . List RPAREN
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    SQUAREBRAC1     shift and go to state 24
+
+    List                           shift and go to state 92
+
+state 74
+
+    (27) fact -> CAR LPAREN IDENT RPAREN .
+
+    TIMES           reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    RPAREN          reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    PLUS            reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    MINUS           reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    DO              reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    THEN            reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    SEMICOLON       reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    $end            reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    OD              reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    ELSE            reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    FI              reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    END             reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+    COMMA           reduce using rule 27 (fact -> CAR LPAREN IDENT RPAREN .)
+
+
+state 75
+
+    (26) fact -> CAR LPAREN Item RPAREN .
+
+    TIMES           reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    RPAREN          reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    PLUS            reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    MINUS           reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    DO              reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    THEN            reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    SEMICOLON       reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    $end            reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    OD              reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    ELSE            reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    FI              reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    END             reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+    COMMA           reduce using rule 26 (fact -> CAR LPAREN Item RPAREN .)
+
+
+state 76
+
+    (31) fact -> NULL QUESTIONMARK LPAREN IDENT . RPAREN
+
+    RPAREN          shift and go to state 93
+
+
+state 77
+
+    (30) fact -> NULL QUESTIONMARK LPAREN Item . RPAREN
+
+    RPAREN          shift and go to state 94
+
+
+state 78
+
+    (44) func_call -> IDENT LPAREN expr_list RPAREN .
+
+    TIMES           reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    COMMA           reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    PLUS            reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    MINUS           reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    RPAREN          reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    THEN            reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    DO              reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    SEMICOLON       reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    $end            reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    OD              reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    ELSE            reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    FI              reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+    END             reduce using rule 44 (func_call -> IDENT LPAREN expr_list RPAREN .)
+
+
+state 79
+
+    (10) expr_list -> expr COMMA . expr_list
+    (10) expr_list -> . expr COMMA expr_list
+    (11) expr_list -> . expr
+    (8) expr -> . expr PLUS term
+    (9) expr -> . expr MINUS term
+    (12) expr -> . term
+    (13) term -> . term TIMES fact
+    (14) term -> . fact
+    (15) fact -> . LPAREN expr RPAREN
+    (16) fact -> . NUMBER
+    (17) fact -> . IDENT
+    (18) fact -> . func_call
+    (19) fact -> . List
+    (26) fact -> . CAR LPAREN Item RPAREN
+    (27) fact -> . CAR LPAREN IDENT RPAREN
+    (28) fact -> . CDR LPAREN IDENT RPAREN
+    (29) fact -> . CDR LPAREN Item RPAREN
+    (30) fact -> . NULL QUESTIONMARK LPAREN Item RPAREN
+    (31) fact -> . NULL QUESTIONMARK LPAREN IDENT RPAREN
+    (32) fact -> . LIST QUESTIONMARK LPAREN Item RPAREN
+    (33) fact -> . LIST QUESTIONMARK LPAREN IDENT RPAREN
+    (34) fact -> . INT QUESTIONMARK LPAREN IDENT RPAREN
+    (35) fact -> . INT QUESTIONMARK LPAREN Item RPAREN
+    (36) fact -> . CONS LPAREN IDENT COMMA IDENT RPAREN
+    (37) fact -> . CONS LPAREN Item COMMA List RPAREN
+    (44) func_call -> . IDENT LPAREN expr_list RPAREN
+    (20) List -> . SQUAREBRAC1 ListItems SQUAREBRAC2
+    (21) List -> . SQUAREBRAC1 SQUAREBRAC2
+
+    LPAREN          shift and go to state 19
+    NUMBER          shift and go to state 14
+    IDENT           shift and go to state 17
+    CAR             shift and go to state 13
+    CDR             shift and go to state 25
+    NULL            shift and go to state 15
+    LIST            shift and go to state 23
+    INT             shift and go to state 21
+    CONS            shift and go to state 12
+    SQUAREBRAC1     shift and go to state 24
+
+    func_call                      shift and go to state 16
+    term                           shift and go to state 20
+    expr                           shift and go to state 58
+    List                           shift and go to state 18
+    expr_list                      shift and go to state 95
+    fact                           shift and go to state 26
+
+state 80
+
+    (34) fact -> INT QUESTIONMARK LPAREN IDENT . RPAREN
+
+    RPAREN          shift and go to state 96
+
+
+state 81
+
+    (35) fact -> INT QUESTIONMARK LPAREN Item . RPAREN
+
+    RPAREN          shift and go to state 97
+
+
+state 82
+
+    (39) while_stmt -> WHILE expr DO stmt_list OD .
+
+    SEMICOLON       reduce using rule 39 (while_stmt -> WHILE expr DO stmt_list OD .)
+    $end            reduce using rule 39 (while_stmt -> WHILE expr DO stmt_list OD .)
+    OD              reduce using rule 39 (while_stmt -> WHILE expr DO stmt_list OD .)
+    ELSE            reduce using rule 39 (while_stmt -> WHILE expr DO stmt_list OD .)
+    FI              reduce using rule 39 (while_stmt -> WHILE expr DO stmt_list OD .)
+    END             reduce using rule 39 (while_stmt -> WHILE expr DO stmt_list OD .)
+
+
+state 83
+
+    (33) fact -> LIST QUESTIONMARK LPAREN IDENT . RPAREN
+
+    RPAREN          shift and go to state 98
+
+
+state 84
+
+    (32) fact -> LIST QUESTIONMARK LPAREN Item . RPAREN
+
+    RPAREN          shift and go to state 99
+
+
+state 85
+
+    (22) ListItems -> Item COMMA ListItems .
+
+    SQUAREBRAC2     reduce using rule 22 (ListItems -> Item COMMA ListItems .)
+
+
+state 86
+
+    (28) fact -> CDR LPAREN IDENT RPAREN .
+
+    TIMES           reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    RPAREN          reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    PLUS            reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    MINUS           reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    DO              reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    THEN            reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    SEMICOLON       reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    $end            reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    OD              reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    ELSE            reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    FI              reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    END             reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+    COMMA           reduce using rule 28 (fact -> CDR LPAREN IDENT RPAREN .)
+
+
+state 87
+
+    (29) fact -> CDR LPAREN Item RPAREN .
+
+    TIMES           reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    RPAREN          reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    PLUS            reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    MINUS           reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    DO              reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    THEN            reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    SEMICOLON       reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    $end            reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    OD              reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    ELSE            reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    FI              reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    END             reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+    COMMA           reduce using rule 29 (fact -> CDR LPAREN Item RPAREN .)
+
+
+state 88
+
+    (42) param_list -> IDENT . COMMA param_list
+    (43) param_list -> IDENT .
+
+    COMMA           shift and go to state 100
+    RPAREN          reduce using rule 43 (param_list -> IDENT .)
+
+
+state 89
+
+    (41) define_stmt -> DEFINE IDENT PROC LPAREN param_list . RPAREN stmt_list END
+
+    RPAREN          shift and go to state 101
+
+
+state 90
+
+    (40) if_stmt -> IF expr THEN stmt_list ELSE . stmt_list FI
+    (2) stmt_list -> . stmt SEMICOLON stmt_list
+    (3) stmt_list -> . stmt
+    (4) stmt -> . assign_stmt
+    (5) stmt -> . while_stmt
+    (6) stmt -> . if_stmt
+    (7) stmt -> . define_stmt
+    (38) assign_stmt -> . IDENT ASSIGNOP expr
+    (39) while_stmt -> . WHILE expr DO stmt_list OD
+    (40) if_stmt -> . IF expr THEN stmt_list ELSE stmt_list FI
+    (41) define_stmt -> . DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END
+
+    IDENT           shift and go to state 6
+    WHILE           shift and go to state 1
+    IF              shift and go to state 8
+    DEFINE          shift and go to state 5
+
+    stmt_list                      shift and go to state 102
+    if_stmt                        shift and go to state 10
+    define_stmt                    shift and go to state 2
+    stmt                           shift and go to state 7
+    assign_stmt                    shift and go to state 3
+    while_stmt                     shift and go to state 11
+
+state 91
+
+    (36) fact -> CONS LPAREN IDENT COMMA IDENT . RPAREN
+
+    RPAREN          shift and go to state 103
+
+
+state 92
+
+    (37) fact -> CONS LPAREN Item COMMA List . RPAREN
+
+    RPAREN          shift and go to state 104
+
+
+state 93
+
+    (31) fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .
+
+    TIMES           reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    RPAREN          reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    PLUS            reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    MINUS           reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    DO              reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    THEN            reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    SEMICOLON       reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    $end            reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    OD              reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    ELSE            reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    FI              reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    END             reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+    COMMA           reduce using rule 31 (fact -> NULL QUESTIONMARK LPAREN IDENT RPAREN .)
+
+
+state 94
+
+    (30) fact -> NULL QUESTIONMARK LPAREN Item RPAREN .
+
+    TIMES           reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    RPAREN          reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    PLUS            reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    MINUS           reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    DO              reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    THEN            reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    SEMICOLON       reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    $end            reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    OD              reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    ELSE            reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    FI              reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    END             reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+    COMMA           reduce using rule 30 (fact -> NULL QUESTIONMARK LPAREN Item RPAREN .)
+
+
+state 95
+
+    (10) expr_list -> expr COMMA expr_list .
+
+    RPAREN          reduce using rule 10 (expr_list -> expr COMMA expr_list .)
+
+
+state 96
+
+    (34) fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .
+
+    TIMES           reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    RPAREN          reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    PLUS            reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    MINUS           reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    DO              reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    THEN            reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    SEMICOLON       reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    $end            reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    OD              reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    ELSE            reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    FI              reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    END             reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+    COMMA           reduce using rule 34 (fact -> INT QUESTIONMARK LPAREN IDENT RPAREN .)
+
+
+state 97
+
+    (35) fact -> INT QUESTIONMARK LPAREN Item RPAREN .
+
+    TIMES           reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    RPAREN          reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    PLUS            reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    MINUS           reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    DO              reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    THEN            reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    SEMICOLON       reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    $end            reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    OD              reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    ELSE            reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    FI              reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    END             reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+    COMMA           reduce using rule 35 (fact -> INT QUESTIONMARK LPAREN Item RPAREN .)
+
+
+state 98
+
+    (33) fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .
+
+    TIMES           reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    RPAREN          reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    PLUS            reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    MINUS           reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    DO              reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    THEN            reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    SEMICOLON       reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    $end            reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    OD              reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    ELSE            reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    FI              reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    END             reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+    COMMA           reduce using rule 33 (fact -> LIST QUESTIONMARK LPAREN IDENT RPAREN .)
+
+
+state 99
+
+    (32) fact -> LIST QUESTIONMARK LPAREN Item RPAREN .
+
+    TIMES           reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    RPAREN          reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    PLUS            reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    MINUS           reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    DO              reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    THEN            reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    SEMICOLON       reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    $end            reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    OD              reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    ELSE            reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    FI              reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    END             reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+    COMMA           reduce using rule 32 (fact -> LIST QUESTIONMARK LPAREN Item RPAREN .)
+
+
+state 100
+
+    (42) param_list -> IDENT COMMA . param_list
+    (42) param_list -> . IDENT COMMA param_list
+    (43) param_list -> . IDENT
+
+    IDENT           shift and go to state 88
+
+    param_list                     shift and go to state 105
+
+state 101
+
+    (41) define_stmt -> DEFINE IDENT PROC LPAREN param_list RPAREN . stmt_list END
+    (2) stmt_list -> . stmt SEMICOLON stmt_list
+    (3) stmt_list -> . stmt
+    (4) stmt -> . assign_stmt
+    (5) stmt -> . while_stmt
+    (6) stmt -> . if_stmt
+    (7) stmt -> . define_stmt
+    (38) assign_stmt -> . IDENT ASSIGNOP expr
+    (39) while_stmt -> . WHILE expr DO stmt_list OD
+    (40) if_stmt -> . IF expr THEN stmt_list ELSE stmt_list FI
+    (41) define_stmt -> . DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END
+
+    IDENT           shift and go to state 6
+    WHILE           shift and go to state 1
+    IF              shift and go to state 8
+    DEFINE          shift and go to state 5
+
+    stmt_list                      shift and go to state 106
+    if_stmt                        shift and go to state 10
+    define_stmt                    shift and go to state 2
+    stmt                           shift and go to state 7
+    assign_stmt                    shift and go to state 3
+    while_stmt                     shift and go to state 11
+
+state 102
+
+    (40) if_stmt -> IF expr THEN stmt_list ELSE stmt_list . FI
+
+    FI              shift and go to state 107
+
+
+state 103
+
+    (36) fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .
+
+    TIMES           reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    RPAREN          reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    PLUS            reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    MINUS           reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    DO              reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    THEN            reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    SEMICOLON       reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    $end            reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    OD              reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    ELSE            reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    FI              reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    END             reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+    COMMA           reduce using rule 36 (fact -> CONS LPAREN IDENT COMMA IDENT RPAREN .)
+
+
+state 104
+
+    (37) fact -> CONS LPAREN Item COMMA List RPAREN .
+
+    TIMES           reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    RPAREN          reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    PLUS            reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    MINUS           reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    DO              reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    THEN            reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    SEMICOLON       reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    $end            reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    OD              reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    ELSE            reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    FI              reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    END             reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+    COMMA           reduce using rule 37 (fact -> CONS LPAREN Item COMMA List RPAREN .)
+
+
+state 105
+
+    (42) param_list -> IDENT COMMA param_list .
+
+    RPAREN          reduce using rule 42 (param_list -> IDENT COMMA param_list .)
+
+
+state 106
+
+    (41) define_stmt -> DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list . END
+
+    END             shift and go to state 108
+
+
+state 107
+
+    (40) if_stmt -> IF expr THEN stmt_list ELSE stmt_list FI .
+
+    SEMICOLON       reduce using rule 40 (if_stmt -> IF expr THEN stmt_list ELSE stmt_list FI .)
+    ELSE            reduce using rule 40 (if_stmt -> IF expr THEN stmt_list ELSE stmt_list FI .)
+    END             reduce using rule 40 (if_stmt -> IF expr THEN stmt_list ELSE stmt_list FI .)
+    $end            reduce using rule 40 (if_stmt -> IF expr THEN stmt_list ELSE stmt_list FI .)
+    OD              reduce using rule 40 (if_stmt -> IF expr THEN stmt_list ELSE stmt_list FI .)
+    FI              reduce using rule 40 (if_stmt -> IF expr THEN stmt_list ELSE stmt_list FI .)
+
+
+state 108
+
+    (41) define_stmt -> DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END .
+
+    SEMICOLON       reduce using rule 41 (define_stmt -> DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END .)
+    ELSE            reduce using rule 41 (define_stmt -> DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END .)
+    END             reduce using rule 41 (define_stmt -> DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END .)
+    $end            reduce using rule 41 (define_stmt -> DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END .)
+    OD              reduce using rule 41 (define_stmt -> DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END .)
+    FI              reduce using rule 41 (define_stmt -> DEFINE IDENT PROC LPAREN param_list RPAREN stmt_list END .)
+
