@@ -1,0 +1,12 @@
+(define (seq x sumlist)
+	(let 	(
+		(begining (car sumlist))
+		(step (cadr sumlist))
+		(last (caddr sumlist))
+	)
+	(if ( < begining last)
+		()
+	(cons (x begining) (seq x ( list(+ begining step) step last)))
+	)
+	)
+)
